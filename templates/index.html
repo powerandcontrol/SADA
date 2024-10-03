@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BSI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Source Code Pro', monospace; /* Fonte estilo geek */
             margin: 0;
             padding: 0;
             background-color: #08415C;
             color: #333;
         }
         header {
-            background-color: #FFFFC7;
+            background-color: #FFF;
             padding: 20px;
             text-align: center;
-            height: 50px
+            height: 50px;
         }
         header img {
             height: 50px;
@@ -26,40 +27,60 @@
             color: #fff;
             margin: 0;
             margin-bottom: 30px;
+            text-align: center;
         }
         .container {
             max-width: 600px;
-            height:400px;
             margin: 30px auto;
-            background: #FFFFC7;
-            padding: 20px;
+            background: #FFFF;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
-        input[type="file"] {
+        input[type="file"], select {
             margin-bottom: 15px;
-            padding: 10px;
-            border: 2px solid #000;
+            padding: 12px;
+            border: 2px solid #3BB273;
             border-radius: 5px;
-            width: 95%;
+            width: 90%; /* Largura padronizada */
             font-size: 16px;
+            font-family: 'Source Code Pro', monospace; /* Fonte estilo geek */
+            background-color: #fff;
+            cursor: pointer;
+        }
+        select {
+            background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-caret-down-fill" viewBox="0 0 16 16"%3E%3Cpath fill-rule="evenodd" d="M4.5 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5l-3.5 4a.5.5 0 0 1-.75 0l-3.5-4z"/%3E%3C/svg%3E');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
         }
         button {
-            display: block; /* Adiciona esta linha */
-            margin: 0 auto; /* Adiciona esta linha */
-            background-color: #000;
+            display: block;
+            margin: 20px auto;
+            background-color: #3BB273;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 18px;
+            font-family: 'Source Code Pro', monospace;
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
         button:hover {
-            background-color: #45a049;
+            background-color: #2a9159;
+        }
+        .alert {
+            background-color: #ffcccc;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 100%; /* Faz o alerta ocupar toda a largura */
         }
     </style>
 </head>
@@ -70,13 +91,17 @@
 </header>
 
 <div class="container">
-    <div style="background-color: #ffcccc; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 20px;">
-        <strong style="color: #a00000; font-size: 18px;">CURRÍCULO 2023.1</strong>
+    <div class="alert">
+        <strong style="color: #a00000; font-size: 18px;">Escolha o Currículo</strong>
     </div>
-    <h1 style="font-size: 24px; text-align: center; color: black;">Upload do Histórico Escolar</h1>
+    <select name="curriculo" required>
+        <option value="2008">CURRÍCULO 2008 (ANTIGO)</option>
+        <option value="2023">CURRÍCULO 2023.1 (ATUAL)</option>
+    </select>
+    <h1 style="font-size: 24px; color: black;">Upload do Histórico Escolar</h1>
     <form action="/" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" accept="application/pdf" required>
-        <button type="submit" style="background-color: #3BB273;">Enviar</button>
+        <button type="submit">Enviar</button>
     </form>
 </div>
 

@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
 
     <title>Relatório</title>
     <style>
-        /* Estilos Gerais */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Source Code Pro', monospace; /* Fonte estilo geek */
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #08415C;
             color: #333;
-            line-height: 1.6; /* Aumenta a legibilidade */
         }
-
         header {
-            background-color: #787877; /* Escuro para melhor contraste */
+            background-color: #FFF;
             padding: 20px;
             text-align: center;
+            height: 50px;
         }
-
         header img {
-            max-width: 120px;
-            border-radius: 50%; /* Logo circular */
+            height: 50px;
+            width: 50px;
         }
 
         h1 {
@@ -252,7 +251,7 @@
 <body>
 
 <header>
-    <img src="static/logo.png" alt="Logo da UNIRIO">
+    <img src="static/logo-unirio.png" alt="Logo da UNIRIO">
 </header>
 
 <div class="container">
@@ -266,7 +265,7 @@
         <h2>Obrigatórias Pendentes:</h2>
         {% if relatorio.faltantes %}
             {% for periodo, faltantes in relatorio.faltantes.items() %}
-            <h3>{{ periodo }}</h3>
+            <h3>{{ periodo }}° período</h3>
             <ul>
                 {% for materia in faltantes %}
                 <li class="materia-card tooltip {% if materia.requisitos_ok %}requisito-ok{% else %}requisito-pendente{% endif %}">
@@ -323,71 +322,28 @@
             </li>
             {% endfor %}
         </ul>
+     {% endif %}
 
 </section>
 
 
-   <section id="situação" class="tab-content">
-    <h2>Situação:</h2>
-   <!-- Container para o sumário com estilização aprimorada -->
-<div class="summary">
-    <div class="summary-item" style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; background-color: #f9f9f9; transition: transform 0.2s; cursor: pointer;">
-        <h3>
-            <i class="fas fa-graduation-cap" style="color: #4381C1;"></i>
-            Total de matérias cursadas: <strong>{{ relatorio.total_cursadas }}</strong>
-        </h3>
-    </div>
+     <section id="situação" class="tab-content">
+        <h2>Situação:</h2>
 
-    <div class="summary-item" style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; background-color: #f9f9f9; transition: transform 0.2s; cursor: pointer;">
-        <h3>
-            <i class="fas fa-exclamation-triangle" style="color: #EA526F;"></i>
-            Total de matérias faltantes: <strong>{{ relatorio.total_faltantes }}</strong>
-        </h3>
-    </div>
+        <!-- Gráfico de Barras: Total de Matérias Cursadas vs Faltantes -->
+        <h3>Total de Matérias Cursadas vs Faltantes</h3>
+        <canvas id="totalMateriasChart"></canvas>
 
-    <div class="summary-item" style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; background-color: #f9f9f9; transition: transform 0.2s; cursor: pointer;">
-        <h3>
-            <i class="fas fa-book"></i>
-            Optativas cursadas: <strong> {{ relatorio.optativas_cursadas }} </strong>
-        </h3>
-    </div>
+        <!-- Gráfico de Pizza: Optativas Cursadas vs Faltantes -->
+        <h3>Optativas Cursadas vs Faltantes</h3>
+        <canvas id="optativasChart"></canvas>
 
-    <div class="summary-item" style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-right: 15px; background-color: #f9f9f9; transition: transform 0.2s; cursor: pointer;">
-        <h3>
-            <i class="fas fa-exclamation-triangle" style="color: #EA526F;"></i>
-            Optativas faltantes:  <strong> {{ relatorio.total_optativas - relatorio.optativas_cursadas }} </strong>
-              {% else %}
-            Você ainda não cursou nenhuma optativa.
-            {% endif %}
-        </h3>
-
-    </div>
+        <!-- Gráfico de Linha: Percentual do Curso já Cursado -->
+        <h3>Percentual do Curso Cursado</h3>
+        <canvas id="percentualDoughnutChart"></canvas>
+    </section>
 
 
-    <div class="summary-item" style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; background-color: #f9f9f9; transition: transform 0.2s; cursor: pointer;">
-        <h3>
-            <i class="fas fa-chart-bar" style="color: #4381C1;"></i>
-            Percentual do curso já cursado: <strong>{{ relatorio.percentual_cursado | round(2) }}%</strong>
-        </h3>
-    </div>
-</div>
-
-
-
-    <!-- Adicionando a imagem do fluxograma -->
-    <div style="text-align: center; margin: 20px 0;">
-        <img src="https://bsi.uniriotec.br/wp-content/uploads/sites/31/2023/06/Fluxograma-Curriculo-Novo-1.png" alt="Fluxograma do Curso" style="max-width: 100%; height: auto;">
-    </div>
-
-    <!-- Adicionando o ícone para o PDF -->
-    <div style="text-align: center; margin: 20px 0;">
-        <a href="https://bsi.uniriotec.br/wp-content/uploads/sites/31/2023/12/Reforma_BSI_2023.pdf" target="_blank" style="text-decoration: none; color: #007BFF; font-size: 16px; font-weight: bold;">
-            <img src="https://img.icons8.com/material-outlined/24/000000/pdf-2.png" alt="PDF Icon" style="vertical-align: middle; margin-right: 5px;">
-            Visualizar Reforma BSI 2023
-        </a>
-    </div>
-
-</section>
 </div>
 
 <script>
@@ -401,5 +357,74 @@
         activeTab.classList.add('active');
     }
 </script>
+
+<script>
+
+    // Gráfico de Barras para Total de Matérias Cursadas vs Faltantes
+    const totalMateriasCtx = document.getElementById('totalMateriasChart').getContext('2d');
+    const totalMateriasChart = new Chart(totalMateriasCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Cursadas', 'Faltantes'],
+            datasets: [{
+                label: 'Total de Matérias',
+                data: [{{ relatorio.total_cursadas }}, {{ relatorio.total_faltantes }}],
+                backgroundColor: ['rgba(255, 0, 0, 0.7)', 'rgba(0, 255, 0, 0.7)'],
+                borderColor: ['rgba(255, 0, 0, 1)', 'rgba(0, 255, 0, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Gráfico de Pizza para Optativas Cursadas vs Faltantes
+    const optativasCtx = document.getElementById('optativasChart').getContext('2d');
+    const optativasChart = new Chart(optativasCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Optativas Cursadas', 'Optativas Faltantes'],
+            datasets: [{
+                label: 'Optativas',
+                data: [{{ relatorio.optativas_cursadas }}, {{ relatorio.total_optativas - relatorio.optativas_cursadas }}],
+                backgroundColor: ['rgba(0, 0, 255, 0.7)', 'rgba(255, 255, 0, 0.7)'],
+                borderColor: ['rgba(0, 0, 255, 1)', 'rgba(255, 255, 0, 1)'],
+                borderWidth: 1
+            }]
+        }
+    });
+
+ // Gráfico de Doughnut para Percentual do Curso Cursado
+    const percentualDoughnutCtx = document.getElementById('percentualDoughnutChart').getContext('2d');
+    const percentualDoughnutChart = new Chart(percentualDoughnutCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Percentual Cursado', 'Percentual Faltante'],
+            datasets: [{
+                data: [{{ relatorio.percentual_cursado }}, 100 - {{ relatorio.percentual_cursado }}],
+                backgroundColor: ['rgba(0, 123, 255, 0.8)', 'rgba(255, 99, 132, 0.2)'],  // Cores mais vivas
+                borderColor: ['rgba(0, 123, 255, 1)', 'rgba(255, 99, 132, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            cutout: '70%',  // Define o espaço no meio para estilo anel
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+
 </body>
 </html>

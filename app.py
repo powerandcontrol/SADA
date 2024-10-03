@@ -1,8 +1,8 @@
 # app.py
 from flask import Flask, render_template, request
 from config import Config
-from models import db, Obrigatoria, Optativa, Requisito
-from database import carregar_dados_excel, carregar_dados_requisitos
+from models import db, Eixo, Disciplina, Requisito  # Modifique para importar db também
+from database import insertDisciplinas, insertRequisitos
 import PyPDF2
 
 app = Flask(__name__, static_url_path=Config.STATIC_URL_PATH, static_folder=Config.STATIC_FOLDER)
@@ -12,8 +12,9 @@ db.init_app(app)
 # Inicializa as tabelas e carrega os dados do Excel no banco de dados
 with app.app_context():
     db.create_all()  # Cria as tabelas apenas se não existirem
-    carregar_dados_excel()  # Carrega os dados apenas se as tabelas estiverem vazias
-    carregar_dados_requisitos()  # Carrega os dados dos requisitos
+  #  insertDisciplinas()  # Carrega os dados apenas se as tabelas estiverem vazias
+   # insertRequisitos()  # Carrega os dados dos requisitos
+
 # Função para extrair o texto de um PDF diretamente do objeto FileStorage
 def extrair_texto_pdf(file):
     reader = PyPDF2.PdfReader(file)
@@ -67,41 +68,47 @@ def gerar_codigo_disciplina(nome_disciplina):
     # Limita o código a um máximo de 5 caracteres (ajustável)
     return codigo[:5] if codigo else "ND"
 
+
 def gerar_relatorio(cursadas_apv, cursadas_adi):
     cursadas = set(cursadas_apv + cursadas_adi)
-    curriculo_obrigatorias = Obrigatoria.query.all()
-    curriculo_optativas = Optativa.query.all()
+    curriculo_obrigatorias = Disciplina.query.filter_by(obrigatoria=True).all()
+    curriculo_optativas = Disciplina.query.filter_by(obrigatoria=False).all()
 
     materias_faltantes = {}
     requisitos_materiais_faltantes = {}
-    total_materias = len(curriculo_obrigatorias)
+
+    # Inicializa a lista de disciplinas por período
+    disciplinas_por_periodo = {}
 
     # Verifica as matérias faltantes nas obrigatórias
     for disciplina in curriculo_obrigatorias:
         if disciplina.nome_disciplina.lower() not in cursadas:
             periodo = disciplina.periodo_ideal
-            if periodo not in materias_faltantes:
-                materias_faltantes[periodo] = []
+            if periodo not in disciplinas_por_periodo:
+                disciplinas_por_periodo[periodo] = []  # Cria uma nova lista para o período
             # Verifica os requisitos para a disciplina faltante
-            requisitos = Requisito.query.filter_by(id_disciplina=disciplina.id_disciplina).all()
+            requisitos = Requisito.query.filter_by(codigo_disciplina=disciplina.codigo_disciplina).all()
             requisitos_ok = all(
-                Obrigatoria.query.get(req.id_requisito_disciplina).nome_disciplina.lower() in cursadas
+                Disciplina.query.get(req.codigo_requisito).nome_disciplina.lower() in cursadas
                 for req in requisitos
             )
 
             # Adiciona a disciplina e o status dos requisitos
             disciplina.requisitos_ok = requisitos_ok  # Armazenando o status na disciplina
-            materias_faltantes[periodo].append(disciplina)
+            disciplinas_por_periodo[periodo].append(disciplina)
 
+            # Armazena os nomes das disciplinas dos requisitos
             requisitos_materiais_faltantes[disciplina.nome_disciplina] = [
-                Obrigatoria.query.get(req.id_requisito_disciplina).codigo_disciplina for req in requisitos
+                Disciplina.query.get(req.codigo_requisito).nome_disciplina for req in requisitos
             ]
-            print(
-                f'Requisitos para {disciplina.nome_disciplina}: {requisitos_materiais_faltantes[disciplina.nome_disciplina]}')
+
+    # Ordena os períodos e as disciplinas dentro deles
+    for periodo in sorted(disciplinas_por_periodo.keys()):
+        materias_faltantes[periodo] = sorted(disciplinas_por_periodo[periodo], key=lambda d: d.nome_disciplina)
 
     total_faltantes = sum(len(faltam) for faltam in materias_faltantes.values())
-    total_cursadas = total_materias - total_faltantes
-    percentual_cursado = (total_cursadas / total_materias) * 100
+    total_cursadas = len(curriculo_obrigatorias) - total_faltantes
+    percentual_cursado = (total_cursadas / len(curriculo_obrigatorias)) * 100
 
     # Cálculo das optativas
     total_optativas = 8  # Número total de optativas necessárias
