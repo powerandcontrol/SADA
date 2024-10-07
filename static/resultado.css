@@ -40,13 +40,12 @@ ul {
     justify-content: space-between;
     align-items: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animação para o hover */
-    border-left: 8px solid transparent;
+    background-color: #fff; /* Fundo neutro e claro */
     width: 250px; /* Ajuste a largura conforme necessário */
     height: 60px;
 }
 
 .materia-cursada {
-    border-left-color: #4CAF50; /* Verde para matérias cursadas */
     color: green; /* Manter o texto em verde */
 }
 

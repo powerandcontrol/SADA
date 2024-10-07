@@ -35,7 +35,8 @@
             <ul>
                 {% for materia in relatorio.faltantes[periodo] %}
                     <li class="materia-card tooltip {% if materia.requisitos_ok %}requisito-ok{% else %}requisito-pendente{% endif %}"
-                        style="color: {% if materia.requisitos_ok %}blue{% else %}red{% endif %};"
+                        style="color: {% if materia.requisitos_ok %}#464D77{% else %}#DB5461{% endif %};
+                               border-left: {% if materia.requisitos_ok %}8px solid #464D77{% else %}8px solid #DB5461{% endif %};"
                         onclick="openModal('{{ materia.codigo_disciplina }}', '{{ materia.nome_disciplina }}', '{{ materia.ementa }}', '{{ materia.carga_horaria }}', '{{ relatorio.requisitos[materia.nome_disciplina] | join(', ') }}', {% if not materia.requisitos_ok %}true{% else %}false{% endif %})">
                         <div class="materia-info">
                             <div class="materia-codigo">
@@ -52,10 +53,12 @@
 
                 {% for turma in relatorio.turmas_cursadas %}
                     {% if turma.periodo == periodo %}
-                        <li class="materia-card" style="color: green;"
+                        <li class="materia-card" style="color: #49A078;border-left: 8px solid #49A078;"
                             onclick="openModal('{{ turma.codigo_disciplina }}', '{{ turma.nome_disciplina }}', '{{ turma.ementa }}', '{{ turma.carga_horaria }}', '{{ turma.requisitos | join(', ') if turma.requisitos else 'Nenhum' }}', false)">
                             <div class="materia-info">
-                                <div class="materia-codigo">{{ turma.codigo_disciplina }}</div>
+                                <div class="materia-codigo">{{ turma.codigo_disciplina }}
+                                    <i class="fas fa-check-circle" style="color: #49A078; font-size: 20px;"></i>
+                                </div>
                                 <div class="materia-nome">{{ turma.nome_disciplina | upper }}</div>
                             </div>
                             <div class="materia-status"></div>
@@ -65,8 +68,9 @@
             </ul>
         </div>
     {% endfor %}
+</section>
 
-    <!-- Modal -->
+   <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -76,35 +80,25 @@
             <p id="modal-requisitos"></p>
         </div>
     </div>
-</section>
 
 
-
-
- <section id="optativas" class="tab-content">
-
+<section id="optativas" class="tab-content">
     {% if relatorio.optativas_cursadas > 0 %}
         <h2>Optativas Cursadas:</h2>
         <ul>
             {% for optativa in relatorio.lista_optativas_cursadas %}
-            <li class="materia-card tooltip optativa-card">
-                <div class="materia-info">
-                    <div class="materia-codigo">
-                        {{ optativa.codigo_disciplina }}
+                <li class="materia-card optativa-card"
+                    onclick="openModal('{{ optativa.codigo_disciplina }}', '{{ optativa.nome_disciplina }}', '{{ optativa.ementa }}', '{{ optativa.carga_horaria }}', 'Nenhum', false)">
+                    <div class="materia-info">
+                        <div class="materia-codigo">
+                            {{ optativa.codigo_disciplina }}
+                        </div>
+                        <div class="materia-nome">{{ optativa.nome_disciplina | upper }}</div>
                     </div>
-                    <div class="materia-nome">{{ optativa.nome_disciplina | upper }}</div>
-                </div>
-                <div class="materia-status">
-                    <span class="tooltiptext">
-                        <strong>Ementa:</strong> {{ optativa.ementa }}<br>
-                        <strong>Carga Horária:</strong> {{ optativa.carga_horaria }}h<br>
-                    </span>
-                </div>
-            </li>
+                </li>
             {% endfor %}
         </ul>
-     {% endif %}
-
+    {% endif %}
 </section>
 
 
