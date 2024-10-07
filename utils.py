@@ -74,42 +74,55 @@ def gerar_relatorio(cursadas_historico):
 
     materias_faltantes = {}
     requisitos_materiais_faltantes = {}
-
-    # Inicializa a lista de disciplinas por período
     disciplinas_por_periodo = {}
+    turmas_cursadas = []
+
+    # Inicializa os períodos no dicionário
+    for disciplina in curriculo_obrigatorias:
+        periodo = disciplina.periodo_ideal
+        if periodo not in disciplinas_por_periodo:
+            disciplinas_por_periodo[periodo] = {'faltantes': [], 'cursadas': []}
 
     # Verifica as matérias faltantes nas obrigatórias
     for disciplina in curriculo_obrigatorias:
         if disciplina.codigo_disciplina not in cursadas:  # Comparação com código
             periodo = disciplina.periodo_ideal
-            if periodo not in disciplinas_por_periodo:
-                # Cria uma nova lista para o período
-                disciplinas_por_periodo[periodo] = []
 
             # Verifica os requisitos para a disciplina faltante
             requisitos = Requisito.query.filter_by(
                 codigo_disciplina=disciplina.codigo_disciplina).all()
-            requisitos_ok = all(
-                req.codigo_requisito in cursadas  # Verifica por código
-                for req in requisitos
-            )
+            requisitos_ok = all(req.codigo_requisito in cursadas for req in requisitos)
 
-            # Adiciona a disciplina e o status dos requisitos
-            disciplina.requisitos_ok = requisitos_ok  # Armazenando o status na disciplina
-            disciplinas_por_periodo[periodo].append(disciplina)
+            # Armazenando o status na disciplina
+            disciplina.requisitos_ok = requisitos_ok
+            disciplinas_por_periodo[periodo]['faltantes'].append(disciplina)
 
             # Armazena os códigos das disciplinas dos requisitos faltantes
             requisitos_materiais_faltantes[disciplina.nome_disciplina] = [
                 Disciplina.query.get(req.codigo_requisito).nome_disciplina for req in requisitos
             ]
 
+        else:
+            # Adiciona as disciplinas cursadas na lista de turmas cursadas
+            turma_info = {
+                "codigo_disciplina": disciplina.codigo_disciplina,
+                "nome_disciplina": disciplina.nome_disciplina,
+                "ementa": disciplina.ementa,
+                "carga_horaria": disciplina.carga_horaria,
+                "periodo": disciplina.periodo_ideal,
+                "requisitos": [
+                    req.requisito_disciplina.nome_disciplina for req in Requisito.query.filter_by(codigo_disciplina=disciplina.codigo_disciplina).all()
+                ]
+            }
+            disciplinas_por_periodo[disciplina.periodo_ideal]['cursadas'].append(turma_info)
+            turmas_cursadas.append(turma_info)
+
     # Ordena os períodos e as disciplinas dentro deles
     for periodo in sorted(disciplinas_por_periodo.keys()):
         materias_faltantes[periodo] = sorted(
-            disciplinas_por_periodo[periodo], key=lambda d: d.nome_disciplina)
+            disciplinas_por_periodo[periodo]['faltantes'], key=lambda d: d.nome_disciplina)
 
-    total_faltantes = sum(len(faltam)
-                          for faltam in materias_faltantes.values())
+    total_faltantes = sum(len(faltam) for faltam in materias_faltantes.values())
     total_cursadas = len(curriculo_obrigatorias) - total_faltantes
     percentual_cursado = (total_cursadas / len(curriculo_obrigatorias)) * 100
 
@@ -125,6 +138,10 @@ def gerar_relatorio(cursadas_historico):
                 "nome_disciplina": optativa.nome_disciplina,
                 "ementa": optativa.ementa,
                 "carga_horaria": optativa.carga_horaria,
+                "periodo": optativa.periodo_ideal,
+                "requisitos": [
+                    req.codigo_requisito for req in Requisito.query.filter_by(codigo_disciplina=optativa.codigo_disciplina).all()
+                ]
             })
 
     optativas_cursadas = len(lista_optativas_cursadas)
@@ -139,4 +156,5 @@ def gerar_relatorio(cursadas_historico):
         "optativas_cursadas": optativas_cursadas,
         "total_optativas": total_optativas,
         "lista_optativas_cursadas": lista_optativas_cursadas,
+        "turmas_cursadas": turmas_cursadas,
     }

@@ -1,5 +1,5 @@
 .container {
-    max-width: 1600px;
+    max-width: 1200px;
     margin: 30px auto;
     background: #fff;
     padding: 30px; /* Aumenta o padding para mais espaço interno */
@@ -21,18 +21,33 @@ h3 {
     font-size: 18px; /* Tamanho do terceiro nível de título */
 }
 
+/* CSS para a lista de matérias */
+ul {
+    list-style-type: none; /* Remove as bolinhas das listas */
+    padding: 0; /* Remove o padding padrão */
+    margin: 0; /* Remove a margem padrão */
+}
+
 /* Estilos para as matérias */
 .materia-card {
     background: #fff;
-    margin: 20px 0; /* Aumentado para melhor espaçamento */
+    margin: 10px; /* Adiciona um espaço entre os cards */
     padding: 20px; /* Aumentado para melhor legibilidade */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: flex;
+    display: inline-block; /* Exibe os itens lado a lado */
+    vertical-align: top; /* Alinha os itens ao topo */
     justify-content: space-between;
     align-items: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animação para o hover */
     border-left: 8px solid transparent;
+    width: 250px; /* Ajuste a largura conforme necessário */
+    height: 60px;
+}
+
+.materia-cursada {
+    border-left-color: #4CAF50; /* Verde para matérias cursadas */
+    color: green; /* Manter o texto em verde */
 }
 
 .materia-card:hover {
@@ -66,47 +81,43 @@ h3 {
     margin-right: 8px;
 }
 
-/* Cores indicativas */
-.requisito-ok {
-    border-left-color: #4381C1;
+/* Estilos do Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fixo na tela */
+    z-index: 1000; /* Acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita scroll se necessário */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+}
+
+.modal-content {
     background-color: #fff;
+    margin: 15% auto; /* Centraliza verticalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Largura do modal */
+    height: 250px; /* Altura do modal */
+    border-radius: 10px; /* Bordas arredondadas */
 }
 
-.requisito-pendente {
-    border-left-color: #EA526F;
-    background-color: #f8d7da; /* Fundo vermelho claro */
+.close {
+    color: #aaa; /* Cor do 'X' de fechar */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-/* Estilos do Tooltip */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    cursor: pointer; /* Muda o cursor para indicar interatividade */
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 250px; /* Largura ajustada para um visual mais moderno */
-    background-color: #333; /* Fundo escuro */
-    color: #fff;
-    text-align: left;
-    border-radius: 5px;
-    padding: 10px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; /* Colocando acima do elemento */
-    left: 50%;
-    margin-left: -125px; /* Centraliza o tooltip */
-    opacity: 0;
-    transition: opacity 0.3s, transform 0.3s; /* Suaviza a transição */
-    transform: translateY(10px); /* Animação de entrada */
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0); /* Volta à posição original ao aparecer */
-}
 
 /* Estilos para as abas */
 .tab-container {

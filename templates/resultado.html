@@ -26,44 +26,59 @@
         <div class="tab" onclick="showTab('optativas')">Optativas</div>
         <div class="tab" onclick="showTab('situação')">Situação</div>
     </div>
+<section id="faltantes" class="tab-content active">
+    <h2>Disciplinas por Período:</h2>
 
-    <section id="faltantes" class="tab-content active">
-        <h2>Obrigatórias Pendentes:</h2>
-        {% if relatorio.faltantes %}
-            {% for periodo, faltantes in relatorio.faltantes.items() %}
-            <h3>{{ periodo }}° período</h3>
+    {% for periodo in relatorio.faltantes.keys() %}
+        <h3>{{ periodo }}° período</h3>
+        <div>
             <ul>
-                {% for materia in faltantes %}
-                <li class="materia-card tooltip {% if materia.requisitos_ok %}requisito-ok{% else %}requisito-pendente{% endif %}">
-                    <div class="materia-info">
-                        <div class="materia-codigo">
-                            {{ materia.codigo_disciplina }}
-                            {% if not materia.requisitos_ok %}
-                            <i class="fas fa-exclamation-circle" style="color: #EA526F; font-size: 20px;"></i>
-                            {% endif %}
+                {% for materia in relatorio.faltantes[periodo] %}
+                    <li class="materia-card tooltip {% if materia.requisitos_ok %}requisito-ok{% else %}requisito-pendente{% endif %}"
+                        style="color: {% if materia.requisitos_ok %}blue{% else %}red{% endif %};"
+                        onclick="openModal('{{ materia.codigo_disciplina }}', '{{ materia.nome_disciplina }}', '{{ materia.ementa }}', '{{ materia.carga_horaria }}', '{{ relatorio.requisitos[materia.nome_disciplina] | join(', ') }}', {% if not materia.requisitos_ok %}true{% else %}false{% endif %})">
+                        <div class="materia-info">
+                            <div class="materia-codigo">
+                                {{ materia.codigo_disciplina }}
+                                {% if not materia.requisitos_ok %}
+                                    <i class="fas fa-exclamation-circle" style="color: #EA526F; font-size: 20px;"></i>
+                                {% endif %}
+                            </div>
+                            <div class="materia-nome">{{ materia.nome_disciplina | upper }}</div>
                         </div>
-                        <div class="materia-nome">{{ materia.nome_disciplina | upper }}</div>
-                    </div>
-                    <div class="materia-status">
-                        <span class="tooltiptext">
-                            <strong>Ementa:</strong> {{ materia.ementa }}<br>
-                            <strong>Carga Horária:</strong> {{ materia.carga_horaria }}h<br>
-                            <strong>Requisitos:</strong>
-                            {% if relatorio.requisitos[materia.nome_disciplina] %}
-                                {{ relatorio.requisitos[materia.nome_disciplina] | join(', ') }}
-                            {% else %}
-                                Nenhum
-                            {% endif %}
-                        </span>
-                    </div>
-                </li>
+                        <div class="materia-status"></div>
+                    </li>
+                {% endfor %}
+
+                {% for turma in relatorio.turmas_cursadas %}
+                    {% if turma.periodo == periodo %}
+                        <li class="materia-card" style="color: green;"
+                            onclick="openModal('{{ turma.codigo_disciplina }}', '{{ turma.nome_disciplina }}', '{{ turma.ementa }}', '{{ turma.carga_horaria }}', '{{ turma.requisitos | join(', ') if turma.requisitos else 'Nenhum' }}', false)">
+                            <div class="materia-info">
+                                <div class="materia-codigo">{{ turma.codigo_disciplina }}</div>
+                                <div class="materia-nome">{{ turma.nome_disciplina | upper }}</div>
+                            </div>
+                            <div class="materia-status"></div>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
-            {% endfor %}
-        {% else %}
-            <p>Você já cumpriu todas as matérias obrigatórias!</p>
-        {% endif %}
-    </section>
+        </div>
+    {% endfor %}
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-ementa"></p>
+            <p id="modal-carga-horaria"></p>
+            <p id="modal-requisitos"></p>
+        </div>
+    </div>
+</section>
+
+
 
 
  <section id="optativas" class="tab-content">
@@ -122,6 +137,32 @@
         const activeTab = document.getElementById(tabId);
         activeTab.classList.add('active');
     }
+</script>
+
+<script>
+
+    function openModal(codigo, nome, ementa, carga_horaria, requisitos, requisitos_pendentes) {
+    document.getElementById('modal-title').innerText = `${codigo} - ${nome}`;
+    document.getElementById('modal-ementa').innerText = `Ementa: ${ementa}`;
+    document.getElementById('modal-carga-horaria').innerText = `Carga Horária: ${carga_horaria}h`;
+    document.getElementById('modal-requisitos').innerText = `Requisitos: ${requisitos || 'Nenhum'}`;
+
+    // Exibe o modal
+    document.getElementById('modal').style.display = 'block';
+}
+
+function closeModal() {
+    // Esconde o modal
+    document.getElementById('modal').style.display = 'none';
+}
+
+// Fecha o modal ao clicar fora dele
+window.onclick = function(event) {
+    if (event.target === document.getElementById('modal')) {
+        closeModal();
+    }
+}
+
 </script>
 
 <script>
