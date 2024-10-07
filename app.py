@@ -1,7 +1,7 @@
 # app.py
 from flask import Flask, render_template, request
 from config import Config
-from util import *
+from utils import *
 
 #
 from models import db, Eixo, Disciplina, Requisito
