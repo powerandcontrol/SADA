@@ -93,6 +93,7 @@ O SADA é uma solução web que utiliza `HTML`, `CSS` e `Javascript` para o Fron
 O SGBD escolhido para fazer a criação e manutenção do Banco de Dados foi o `SQLite`, devido a sua integração com a biblioteca do Python `SQLAlchemy`.
 
 #### Linguagens, Bibliotecas e Frameworks
+<p>
 <img src="https://img.shields.io/badge/Python-3776AB.svg?style=for-the-badge&logo=Python&logoColor=white"/>
 <img src="https://img.shields.io/badge/SQLite-003B57.svg?style=for-the-badge&logo=SQLite&logoColor=white"/>
 <img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white"/>
@@ -101,10 +102,8 @@ O SGBD escolhido para fazer a criação e manutenção do Banco de Dados foi o `
 <img src="https://img.shields.io/badge/Flask-000000.svg?style=for-the-badge&logo=Flask&logoColor=white"/>
 <img src="https://img.shields.io/badge/SQLAlchemy-D71F00.svg?style=for-the-badge&logo=SQLAlchemy&logoColor=white"/>
 <img src="https://img.shields.io/badge/pandas-150458.svg?style=for-the-badge&logo=pandas&logoColor=white"/>
+</p>
 
-<br>
-
-<!-- Features -->
 ### 🎯 Funcionalidades
 
 - Upload de Histórico
@@ -183,7 +182,8 @@ To deploy this project run
 ```
  -->
 
-<!-- Usage -->
+<br>
+
 ## 👀 Como usar o site?
 
 Ao abrir a tela inicial, você deve preencher três inputs principais:
