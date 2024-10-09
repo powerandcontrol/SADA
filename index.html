@@ -1,0 +1,76 @@
+<!-- Extrai o template de base.html -->
+{% extends 'base.html' %}
+
+<!-- Inserir o título da página -->
+{% block tittle %}
+SADA - Sistema de Apoio ao Desempenho Acadêmico
+{% endblock %}
+
+<!-- Inserir o CSS da página -->
+{% block css %}
+<link rel="stylesheet" type="text/css" href="static/css/index.css">
+{% endblock %}
+
+<!-- Inserir o Conteúdo da página -->
+{% block content %}
+<h1 style="font-size: 24px; color: black;">SADA</h1>
+
+<form action="/" method="POST" enctype="multipart/form-data">
+
+    <!-- Selecione o Currículo -->
+    <label for="curriculo"><strong>Escolha o Currículo:</strong></label>
+    <select id="curriculo" name="curriculo" required>
+        <option value="2008">CURRÍCULO 2008 (ANTIGO)</option>
+        <option value="2023">CURRÍCULO 2023.1 (ATUAL)</option>
+    </select>
+
+    <!-- Selecione o Tipo de Histórico -->
+    <label for="tipo_historico"><strong>Selecione o Tipo de Histórico:</strong></label>
+    <select id="tipo_historico" name="tipo_historico" required>
+        <option value="cr_aprovados">Histórico Escolar CR - Aprovados</option>
+        <option value="integralizacao">Histórico Integralização</option>
+    </select>
+
+    <!-- Selecione o Período -->
+    <label for="periodo"><strong>Em qual período você está?</strong></label>
+    <select id="periodo" name="periodo" required>
+        <option value="" disabled selected>Selecione o período</option>
+        <!-- Gera opções de 1º ao 16º período -->
+        <option value="1">1º Período</option>
+        <option value="2">2º Período</option>
+        <option value="3">3º Período</option>
+        <option value="4">4º Período</option>
+        <option value="5">5º Período</option>
+        <option value="6">6º Período</option>
+        <option value="7">7º Período</option>
+        <option value="8">8º Período</option>
+        <option value="9">9º Período</option>
+        <option value="10">10º Período</option>
+        <option value="11">11º Período</option>
+        <option value="12">12º Período</option>
+        <option value="13">13º Período</option>
+        <option value="14">14º Período</option>
+        <option value="15">15º Período</option>
+        <option value="16">16º Período</option>
+    </select>
+
+    <!-- Upload do Histórico Escolar -->
+    <label style="width:90%;" for="file" class="custom-file-upload">
+        Escolha um arquivo PDF
+    </label>
+    <input type="file" id="file" name="file" accept="application/pdf" required hidden>
+    <p id="file-name" style="font-family: 'Source Code Pro', monospace; color: #3BB273; margin-top: 10px;"></p>
+    <iframe id="file-preview" style="width: 100%; height: 500px; margin-top: 20px; display: none;" frameborder="0"></iframe>
+
+    <!-- Botão para visualizar o histórico em uma nova aba -->
+    <button id="view-historico" type="button" style="display: none;" onclick="viewHistorico()">Visualizar Histórico</button>
+
+    <!-- Botão de Envio -->
+    <button type="submit">Enviar</button>
+</form>
+{% endblock %}
+
+<!-- Inserir os Scripts da página -->
+{% block scripts %}
+<script src="static/js/index.js"></script>
+{% endblock %}
