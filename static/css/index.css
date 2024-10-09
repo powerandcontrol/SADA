@@ -1,0 +1,104 @@
+.container {
+     max-width: 600px;
+     margin: 30px auto;
+     background: #FFFF;
+     padding: 30px;
+     border-radius: 10px;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 2px solid #3BB273;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Source Code Pro', monospace;
+    color: #3BB273;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%; /* Mesma largura que os selects e buttons */
+    text-align: center;
+}
+
+.custom-file-upload:hover {
+    background-color: #3BB273;
+    color: white;
+}
+
+input[type="file"] {
+    display: none; /* Esconde o input real */
+}
+
+select, button, .custom-file-upload {
+    width: 100%; /* Faz todos os elementos ocuparem 100% da largura disponível */
+    margin-bottom: 15px;
+}
+
+select, input[type="file"] {
+     padding: 12px;
+     border: 2px solid #3BB273;
+     border-radius: 5px;
+     font-size: 16px;
+     font-family: 'Source Code Pro', monospace;
+     background-color: #fff;
+     cursor: pointer;
+     box-sizing: border-box; /* Garante que o padding e a borda sejam incluídos no tamanho total */
+}
+
+select {
+     background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-caret-down-fill" viewBox="0 0 16 16"%3E%3Cpath fill-rule="evenodd" d="M4.5 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5l-3.5 4a.5.5 0 0 1-.75 0l-3.5-4z"/%3E%3C/svg%3E');
+     background-repeat: no-repeat;
+     background-position: right 10px center;
+     background-size: 12px;
+     appearance: none;
+}
+
+button {
+      display: block;
+      background-color: #3BB273;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      font-family: 'Source Code Pro', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s;
+}
+
+button:hover {
+       background-color: #2a9159;
+}
+
+.alert {
+       background-color: #ffcccc;
+       padding: 10px;
+       border-radius: 5px;
+       margin-bottom: 20px;
+       width: 100%;
+       font-size: 18px;
+       color: #a00000;
+}
+
+label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
