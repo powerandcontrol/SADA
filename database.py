@@ -3,7 +3,7 @@ from models import db, Eixo, Disciplina, Requisito
 import pandas as pd
 import re
 
-df = pd.read_excel("docs/2023.1/reforma-bsi-quadro-materias.xlsx")
+df = pd.read_excel("docs/2023.1/reforma-bsi-quadro-materias.xlsx", engine='openpyxl',)
 
 def retornaEixo(eixo):
     if "Atividades de extensão" in eixo:

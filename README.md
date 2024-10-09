@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="static/logo-unirio.png" alt="logo" width="60" height="auto" />
+  <img src="static/images/logo-unirio.png" alt="logo" width="60" height="auto" />
   <h1>Unihelp</h1>
   
   <p>
@@ -82,7 +82,7 @@ Nosso objetivo é criar telas de visualização de dados que possam auxiliar ess
 ### 📷 Tela Inicial
 
 <div align="center"> 
-  <img src="static/screenshot.jpg" alt="screenshot" />
+  <img src="static/images/screenshot.jpg" alt="screenshot" />
 </div>
 
 <!-- TechStack -->
@@ -190,7 +190,7 @@ Ao abrir a tela inicial, você deve preencher três inputs principais:
 
 - <b>Currículo:</b> escolher entre o currículo antigo 2008.1 ou o atual 2023.2 (de acordo com a sua grade curricular atual)
 
-- <b>Tipo do Histórico:</b> escolher qual tipo de histórico você baixou pelo Portal do Aluno (CR Aprovado entre o currículo antigo 2008.1 ou o atual 2023.2 (de acordo com a sua grade curricular atual)
+- <b>Tipo do Histórico:</b> escolher qual tipo de histórico você baixou pelo Portal do Aluno (CR Aprovado ou Integralização)
 
 - <b>Período:</b> escolher o período que você está cursando no período atual.
 

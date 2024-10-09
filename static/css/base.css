@@ -1,0 +1,26 @@
+body {
+    font-family: 'Source Code Pro', monospace; /* Fonte estilo geek */
+    margin: 0;
+    padding: 0;
+    background-color: #08415C;
+    color: #333;
+}
+
+header {
+    background-color: #FFF;
+    padding: 20px;
+    text-align: center;
+    height: 100px;
+}
+
+header img {
+    height: 50px;
+    width: 50px;
+}
+
+h1 {
+    color: #fff;
+    margin: 0;
+    margin-bottom: 30px;
+    text-align: center;
+}

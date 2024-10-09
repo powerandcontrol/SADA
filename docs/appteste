@@ -87,7 +87,7 @@
 <body>
 
 <header>
-    <img src="static/logo-unirio.png" alt="Logo da UNIRIO">
+    <img src="static/images/logo-unirio.png" alt="Logo da UNIRIO">
 </header>
 
 <div class="container">
