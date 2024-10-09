@@ -1,32 +1,32 @@
 <div align="center">
 
   <img src="static/images/logo-unirio.png" alt="logo" width="60" height="auto" />
-  <h1>Unihelp</h1>
+  <h1>SADA</h1>
   
   <p>
-    Frase de efeito
+    Sistema de Apoio ao Desempenho Acadêmico
   </p>
   
   
 <!-- Badges -->
 <p>
-  <a href="https://github.com/powerandcontrol/unihelp/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/powerandcontrol/unihelp" alt="contributors" />
+  <a href="https://github.com/powerandcontrol/SADA/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/powerandcontrol/SADA" alt="contributors" />
   </a>
   <a href="">
-    <img src="https://img.shields.io/github/last-commit/powerandcontrol/unihelp" alt="last update" />
+    <img src="https://img.shields.io/github/last-commit/powerandcontrol/SADA" alt="last update" />
   </a>
-  <a href="https://github.com/powerandcontrol/unihelp/network/members">
-    <img src="https://img.shields.io/github/forks/powerandcontrol/unihelp" alt="forks" />
+  <a href="https://github.com/powerandcontrol/SADA/network/members">
+    <img src="https://img.shields.io/github/forks/powerandcontrol/SADA" alt="forks" />
   </a>
-  <a href="https://github.com/powerandcontrol/unihelp/stargazers">
-    <img src="https://img.shields.io/github/stars/powerandcontrol/unihelp" alt="stars" />
+  <a href="https://github.com/powerandcontrol/SADA/stargazers">
+    <img src="https://img.shields.io/github/stars/powerandcontrol/SADA" alt="stars" />
   </a>
-  <a href="https://github.com/powerandcontrol/unihelp/issues/">
-    <img src="https://img.shields.io/github/issues/powerandcontrol/unihelp" alt="open issues" />
+  <a href="https://github.com/powerandcontrol/SADA/issues/">
+    <img src="https://img.shields.io/github/issues/powerandcontrol/SADA" alt="open issues" />
   </a>
-  <a href="https://github.com/powerandcontrol/unihelp/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/powerandcontrol/unihelp.svg" alt="license" />
+  <a href="https://github.com/powerandcontrol/SADA/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/powerandcontrol/SADA.svg" alt="license" />
   </a>
 </p>
    
@@ -75,15 +75,41 @@
 
 ## 🌟 Sobre
 
-O SADA é um site pensado para auxiliar todos os estudantes do curso de Sistemas de Informação que se sentem perdidos na hora de organizar a sua grade curricular.
+O SADA foi pensado e desenvolvido para auxiliar todos os estudantes do curso de <b>Sistemas de Informação da UNIRIO</b> que se sentem perdidos na hora de organizar a sua grade curricular.
 
-Nosso objetivo é criar telas de visualização de dados que possam auxiliar esses alunos na hora da criação da grade de horários.
+O sistema analisa, a partir do Histórico do aluno, a situação do mesmo em cada matéria presente na grade curricular do curso. 
 
-### 📷 Tela Inicial
+A partir da tela de visualização dessa análise, o aluno consegue facilmente encontrar as disciplinas que ele ainda não cursou e que estão disponíveis no período atual. Assim, facilitando a criação da grade de horários.
+
+### 📷 Fotos do Website
+
+#### 📃 Tela Inicial
 
 <div align="center"> 
   <img src="static/images/screenshot.jpg" alt="screenshot" />
 </div>
+
+Ao abrir a tela inicial, o usuário deve preencher três inputs principais:
+
+- <b>Currículo:</b> escolher entre o currículo antigo 2008.1 ou o atual 2023.2 (de acordo com a sua grade curricular atual)
+
+- <b>Tipo do Histórico:</b> escolher qual tipo de histórico você baixou pelo Portal do Aluno (CR Aprovado ou Integralização)
+
+- <b>Período:</b> escolher o período que você está cursando no período atual.
+
+#### 📃 Tela de Obrigatórias
+
+<div align="center"> 
+  <img src="static/images/screenshot_obrigatorias.png" alt="screenshot" />
+</div>
+
+Na tela de Obrigatórias, as disciplinas obrigatórias da Grade Curricular são classificadas em três status diferentes:
+
+- <b>Cursadas:</b> matérias que o aluno já cursou, aparecem com a cor verde.
+
+- <b>Não Cursadas e Disponíveis:</b> matérias que o aluno não cursou ainda e que ele já possui todos os pré-requisitos necessários para cursar,aparecem com a cor azul escuro.
+
+- <b>Não Cursas e Indisponíveis:</b> matérias que o aluno não cursou ainda e que ele <b>não</b> possui todos os pré-requisitos necessários para cursar, aparecem com a cor vermelha.
 
 <!-- TechStack -->
 ### 👾 Tecnologias Utilizadas
@@ -137,15 +163,15 @@ Tendo ambos os Pré-Requitos instalados no seu computador, você já consegue ro
 O primeiro passo é clonar o projeto na sua pasta de preferência.
 
 ```bash
-git clone https://github.com/powerandcontrol/unihelp.git
+git clone https://github.com/powerandcontrol/SADA.git
 ```
 
 ### 🔑 Ambiente virtual
 
-Para rodar esse projeto você precisará criar um ambiente virtual `venv` dentro da pasta do Unihelp.
+Para rodar esse projeto você precisará criar um ambiente virtual `venv` dentro da pasta do SADA.
 
 ```bash
-  cd unihelp
+  cd SADA
   python -m venv venv
 ```
 
@@ -184,18 +210,13 @@ To deploy this project run
 
 <br>
 
+<!--
 ## 👀 Como usar o site?
 
-Ao abrir a tela inicial, você deve preencher três inputs principais:
-
-- <b>Currículo:</b> escolher entre o currículo antigo 2008.1 ou o atual 2023.2 (de acordo com a sua grade curricular atual)
-
-- <b>Tipo do Histórico:</b> escolher qual tipo de histórico você baixou pelo Portal do Aluno (CR Aprovado ou Integralização)
-
-- <b>Período:</b> escolher o período que você está cursando no período atual.
 
 
-<!--
+
+
 ```javascript
 import Component from 'my-project'
 
@@ -217,8 +238,8 @@ function App() {
 
 ## 👋 Contribuidores
 
-<a href="https://github.com/powerandcontrol/unihelp/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=powerandcontrol/unihelp" />
+<a href="https://github.com/powerandcontrol/SADA/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=powerandcontrol/SADA" />
 </a>
 
 <br>
