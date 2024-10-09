@@ -41,7 +41,7 @@ ul {
     align-items: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animação para o hover */
     background-color: #fff; /* Fundo neutro e claro */
-    width: 250px; /* Ajuste a largura conforme necessário */
+    width: 300px; /* Ajuste a largura conforme necessário */
     height: 60px;
 }
 
