@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
+  <img src="static/logo-unirio.png" alt="logo" width="60" height="auto" />
   <h1>Unihelp</h1>
   
   <p>
@@ -10,26 +10,27 @@
   
 <!-- Badges -->
 <p>
-  <a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/Louis3797/awesome-readme-template" alt="contributors" />
+  <a href="https://github.com/powerandcontrol/unihelp/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/powerandcontrol/unihelp" alt="contributors" />
   </a>
   <a href="">
-    <img src="https://img.shields.io/github/last-commit/Louis3797/awesome-readme-template" alt="last update" />
+    <img src="https://img.shields.io/github/last-commit/powerandcontrol/unihelp" alt="last update" />
   </a>
-  <a href="https://github.com/Louis3797/awesome-readme-template/network/members">
-    <img src="https://img.shields.io/github/forks/Louis3797/awesome-readme-template" alt="forks" />
+  <a href="https://github.com/powerandcontrol/unihelp/network/members">
+    <img src="https://img.shields.io/github/forks/powerandcontrol/unihelp" alt="forks" />
   </a>
-  <a href="https://github.com/Louis3797/awesome-readme-template/stargazers">
-    <img src="https://img.shields.io/github/stars/Louis3797/awesome-readme-template" alt="stars" />
+  <a href="https://github.com/powerandcontrol/unihelp/stargazers">
+    <img src="https://img.shields.io/github/stars/powerandcontrol/unihelp" alt="stars" />
   </a>
-  <a href="https://github.com/Louis3797/awesome-readme-template/issues/">
-    <img src="https://img.shields.io/github/issues/Louis3797/awesome-readme-template" alt="open issues" />
+  <a href="https://github.com/powerandcontrol/unihelp/issues/">
+    <img src="https://img.shields.io/github/issues/powerandcontrol/unihelp" alt="open issues" />
   </a>
-  <a href="https://github.com/Louis3797/awesome-readme-template/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/Louis3797/awesome-readme-template.svg" alt="license" />
+  <a href="https://github.com/powerandcontrol/unihelp/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/powerandcontrol/unihelp.svg" alt="license" />
   </a>
 </p>
    
+<!--
 <h4>
     <a href="https://github.com/Louis3797/awesome-readme-template/">View Demo</a>
   <span> · </span>
@@ -38,15 +39,15 @@
     <a href="https://github.com/Louis3797/awesome-readme-template/issues/">Report Bug</a>
   <span> · </span>
     <a href="https://github.com/Louis3797/awesome-readme-template/issues/">Request Feature</a>
-  </h4>
+</h4>
+-->
+
 </div>
 
-<br />
+<!-- Sumário 
+# 📔 Sumário
 
-<!-- Table of Contents -->
-# :notebook_with_decorative_cover: Table of Contents
-
-- [About the Project](#star2-about-the-project)
+- [Sobre](#star2-sobre)
   * [Screenshots](#camera-screenshots)
   * [Tech Stack](#space_invader-tech-stack)
   * [Features](#dart-features)
@@ -67,169 +68,134 @@
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
 
-  
 
-<!-- About the Project -->
-## :star2: Sobre
+-->
 
+<br>
 
-<!-- Screenshots -->
-### :camera: Screenshots
+## 🌟 Sobre
+
+O SADA é um site pensado para auxiliar todos os estudantes do curso de Sistemas de Informação que se sentem perdidos na hora de organizar a sua grade curricular.
+
+Nosso objetivo é criar telas de visualização de dados que possam auxiliar esses alunos na hora da criação da grade de horários.
+
+### 📷 Tela Inicial
 
 <div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+  <img src="static/screenshot.jpg" alt="screenshot" />
 </div>
 
-
 <!-- TechStack -->
-### :space_invader: Tech Stack
+### 👾 Tecnologias Utilizadas
 
-<details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://nextjs.org/">Next.js</a></li>
-    <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
-  </ul>
-</details>
+O SADA é uma solução web que utiliza `HTML`, `CSS` e `Javascript` para o Front-End da aplicação, enquanto o Back-End fica por conta do `Python` e do seu framework web `Flask`. 
 
-<details>
-  <summary>Server</summary>
-  <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-    <li><a href="https://go.dev/">Golang</a></li>
-    <li><a href="https://nestjs.com/">Nest.js</a></li>
-    <li><a href="https://socket.io/">SocketIO</a></li>
-    <li><a href="https://www.prisma.io/">Prisma</a></li>    
-    <li><a href="https://www.apollographql.com/">Apollo</a></li>
-    <li><a href="https://graphql.org/">GraphQL</a></li>
-  </ul>
-</details>
+O SGBD escolhido para fazer a criação e manutenção do Banco de Dados foi o `SQLite`, devido a sua integração com a biblioteca do Python `SQLAlchemy`.
 
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.mysql.com/">MySQL</a></li>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
-    <li><a href="https://redis.io/">Redis</a></li>
-    <li><a href="https://neo4j.com/">Neo4j</a></li>
-    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
-  </ul>
-</details>
+#### Linguagens, Bibliotecas e Frameworks
+<img src="https://img.shields.io/badge/Python-3776AB.svg?style=for-the-badge&logo=Python&logoColor=white"/>
+<img src="https://img.shields.io/badge/SQLite-003B57.svg?style=for-the-badge&logo=SQLite&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black"/>
+<img src="https://img.shields.io/badge/Flask-000000.svg?style=for-the-badge&logo=Flask&logoColor=white"/>
+<img src="https://img.shields.io/badge/SQLAlchemy-D71F00.svg?style=for-the-badge&logo=SQLAlchemy&logoColor=white"/>
+<img src="https://img.shields.io/badge/pandas-150458.svg?style=for-the-badge&logo=pandas&logoColor=white"/>
 
-<details>
-<summary>DevOps</summary>
-  <ul>
-    <li><a href="https://www.docker.com/">Docker</a></li>
-    <li><a href="https://www.jenkins.io/">Jenkins</a></li>
-    <li><a href="https://circleci.com/">CircleCLI</a></li>
-  </ul>
-</details>
+<br>
 
 <!-- Features -->
-### :dart: Features
+### 🎯 Funcionalidades
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Upload de Histórico
+- Análise de Progresso Curricular
+- Visualização de dados
 
 <!-- Color Reference -->
-### :art: Paleta de Cores
+### 🎨 Paleta de Cores
 
-| Color             | Hex                                                                |
+| Cor             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Primary Color | ![#222831](https://via.placeholder.com/10/222831?text=+) #222831 |
-| Secondary Color | ![#393E46](https://via.placeholder.com/10/393E46?text=+) #393E46 |
-| Accent Color | ![#00ADB5](https://via.placeholder.com/10/00ADB5?text=+) #00ADB5 |
-| Text Color | ![#EEEEEE](https://via.placeholder.com/10/EEEEEE?text=+) #EEEEEE |
+| Cor Principal | ![#08415C](https://via.placeholder.com/10/08415C?text=+) #08415C |
+| Cor Secundária | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) #FFFFFF |
+| Cor de Destaque | ![#CC2936](https://via.placeholder.com/10/CC2936?text=+) #CC2936 |
+| Text Color | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000 |
 
+<br>
 
-<!-- Env Variables -->
-### :key: Environment Variables
+## 🖥️ Ambiente de desenvolvimento
 
-To run this project, you will need to add the following environment variables to your .env file
+### 🐍 Pré-Requisitos
 
-`API_KEY`
+Esse website é uma solução em Python, então antes de tudo é necessário baixar a linguagem de programação no <a href="https://www.python.org/downloads/"> site oficial </a>.
 
-`ANOTHER_API_KEY`
+O segundo requisito necessário é o Git, que gerencia o controle de versionamento do projeto. Um tutorial de como instalar e começar a usar o Git pode ser encontrado no <a href="https://git-scm.com/downloads"> site oficial </a> da ferramenta.
 
-<!-- Getting Started -->
-## 	:toolbox: Getting Started
+### 🧰 Clonando o projeto
 
-<!-- Prerequisites -->
-### :bangbang: Pré-Requisitos
+Tendo ambos os Pré-Requitos instalados no seu computador, você já consegue rodar o projeto localmente.
 
-This project uses Yarn as package manager
+O primeiro passo é clonar o projeto na sua pasta de preferência.
 
 ```bash
- npm install --global yarn
+git clone https://github.com/powerandcontrol/unihelp.git
 ```
 
-<!-- Installation -->
-### :gear: Instalação
+### 🔑 Ambiente virtual
 
-Install my-project with npm
+Para rodar esse projeto você precisará criar um ambiente virtual `venv` dentro da pasta do Unihelp.
 
 ```bash
-  yarn install my-project
-  cd my-project
+  cd unihelp
+  python -m venv venv
+```
+
+E, depois de criado, será necessário ativá-lo.
+
+```bash
+  venv\scripts\activate
+```
+
+### ⚙️ Instalando as Bibliotecas
+
+As bibliotecas necessárias podem ser encontradas no arquivo `requirements.txt` e conseguimos baixar elas usando o gerenciador de pacotes `pip`.
+
+```bash
+  pip install -r requirements.txt
 ```
    
 <!-- Running Tests -->
-### :test_tube: Running Tests
+### 🧪 Rodando Localmente
 
-To run tests, run the following command
-
-```bash
-  yarn test test
-```
-
-<!-- Run Locally -->
-### :running: Rodando Localmente
-
-Clone the project
+Tendo seguido todos os passos anteriores você pode rodar o projeto sem maiores problemas usando o comando:
 
 ```bash
-  git clone https://github.com/Louis3797/awesome-readme-template.git
+  python app.py
 ```
 
-Go to the project directory
-
-```bash
-  cd my-project
-```
-
-Install dependencies
-
-```bash
-  yarn install
-```
-
-Start the server
-
-```bash
-  yarn start
-```
-
-
-<!-- Deployment -->
-### :triangular_flag_on_post: Deployment
+<!-- Deployment
+### 🚩 Deployment
 
 To deploy this project run
 
 ```bash
   yarn deploy
 ```
-
+ -->
 
 <!-- Usage -->
-## :eyes: Usage
+## 👀 Como usar o site?
 
-Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
+Ao abrir a tela inicial, você deve preencher três inputs principais:
+
+- <b>Currículo:</b> escolher entre o currículo antigo 2008.1 ou o atual 2023.2 (de acordo com a sua grade curricular atual)
+
+- <b>Tipo do Histórico:</b> escolher qual tipo de histórico você baixou pelo Portal do Aluno (CR Aprovado entre o currículo antigo 2008.1 ou o atual 2023.2 (de acordo com a sua grade curricular atual)
+
+- <b>Período:</b> escolher o período que você está cursando no período atual.
 
 
+<!--
 ```javascript
 import Component from 'my-project'
 
@@ -238,33 +204,36 @@ function App() {
 }
 ```
 
-<!-- Roadmap -->
-## :compass: Roadmap
+ Roadmap 
+## 🧭 Roadmap
 
 * [x] Todo 1
 * [ ] Todo 2
 
-
+-->
 <!-- Contributing -->
-## :wave: Contributing
 
-<a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" />
+<br>
+
+## 👋 Contribuidores
+
+<a href="https://github.com/powerandcontrol/unihelp/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=powerandcontrol/unihelp" />
 </a>
 
+<br>
 
+<!--
 Contributions are always welcome!
 
 See `contributing.md` for ways to get started.
 
 
-<!-- Code of Conduct -->
-### :scroll: Code of Conduct
+### 📜 Code of Conduct
 
 Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
 
-<!-- FAQ -->
-## :grey_question: FAQ
+## ❔ FAQ
 
 - Question 1
 
@@ -274,23 +243,21 @@ Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-te
 
   + Answer 2
 
+-->
 
-<!-- License -->
-## :warning: License
-
-Distributed under the no License. See LICENSE.txt for more information.
+## ⚠️ Licensa
+Licensa MIT.
 
 
-<!-- Contact -->
-## :handshake: Contact
+<!--
+## 🤝 Contato
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
 Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
 
 
-<!-- Acknowledgments -->
-## :gem: Acknowledgements
+## 💎 Acknowledgements
 
 Use this section to mention useful resources and libraries that you have used in your projects.
 
@@ -298,3 +265,4 @@ Use this section to mention useful resources and libraries that you have used in
  - [Awesome README](https://github.com/matiassingers/awesome-readme)
  - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
  - [Readme Template](https://github.com/othneildrew/Best-README-Template)
+-->
