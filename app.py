@@ -37,7 +37,9 @@ def index():
 
             # Verifica qual função usar com base no tipo de histórico selecionado
             if tipo_historico == 'cr_aprovados':
-                cursadas_historico = buscar_materias_cursadas(texto_pdf)
+                cursadas_historico = buscar_materias_cursadas(texto_pdf, 'cr_aprovados')
+            elif tipo_historico == 'integralizacao':
+                cursadas_historico = buscar_materias_cursadas(texto_pdf, 'integralizacao')
 
             relatorio = gerar_relatorio(cursadas_historico)
 

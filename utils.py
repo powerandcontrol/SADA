@@ -42,31 +42,47 @@ def extrair_curriculo_historico(pdf):
         return False
 
 # Função para buscar as matérias cursadas no texto extraído (para CR - Aprovados)
-def buscar_materias_cursadas(texto):
+def buscar_materias_cursadas(texto, tipo):
     cursadas = []
 
-    for linha in texto.split('\n'):
-        # Captura matérias APV com código
-        if 'APV- Aprovado' in linha:
-            match = re.search(
-                r'\b([A-Z]{3}\d{4})\s+(.+?)\s+\d+\s+\d+,\d+\s+\d+,\d+\s+APV', linha)
-            if match:
-                # Captura o código da matéria
-                codigo_materia = match.group(1).strip()
-                # Armazena o código da disciplina
-                cursadas.append(codigo_materia)
-                print(f"Matéria APV encontrada: {codigo_materia}")  # Log
+    if tipo == 'cr_aprovados':
+        for linha in texto.split('\n'):
+            # Captura matérias APV com código
+            if 'APV- Aprovado' in linha:
+                match = re.search(
+                    r'\b([A-Z]{3}\d{4})\s+(.+?)\s+\d+\s+\d+,\d+\s+\d+,\d+\s+APV', linha)
+                if match:
+                    # Captura o código da matéria
+                    codigo_materia = match.group(1).strip()
+                    # Armazena o código da disciplina
+                    cursadas.append(codigo_materia)
+                    print(f"Matéria APV encontrada: {codigo_materia}")  # Log
 
-        # Captura matérias ADI com código
-        if 'ADI - Aproveitamento de' in linha:
-            match = re.search(
-                r'\b([A-Z]{3}\d{4})\s+(.+?)\s+\d+\s+\d+,\d+\s+ADI\s+-\s+Aproveitamento de \d+', linha)
-            if match:
-                # Captura o código da matéria
-                codigo_materia = match.group(1).strip()
-                # Armazena o código da disciplina
-                cursadas.append(codigo_materia)
-                print(f"Matéria ADI encontrada: {codigo_materia}")  # Log
+            # Captura matérias ADI com código
+            if 'ADI - Aproveitamento de' in linha:
+                match = re.search(
+                    r'\b([A-Z]{3}\d{4})\s+(.+?)\s+\d+\s+\d+,\d+\s+ADI\s+-\s+Aproveitamento de \d+', linha)
+                if match:
+                    # Captura o código da matéria
+                    codigo_materia = match.group(1).strip()
+                    # Armazena o código da disciplina
+                    cursadas.append(codigo_materia)
+                    print(f"Matéria ADI encontrada: {codigo_materia}")  # Log
+
+    elif tipo == 'integralizacao':
+        for linha in texto.split('\n'):
+            if 'Não Vencido' in linha:
+                continue
+            # Captura matérias APV com código
+            elif 'Vencido' in linha:
+                match = re.search(
+                    r'(\b[A-Z]{3}\d{4}\b).*?Vencido', linha)
+                if match:
+                    # Captura o código da matéria
+                    codigo_materia = match.group(1).strip()
+                    # Armazena o código da disciplina
+                    cursadas.append(codigo_materia)
+                    print(f"Matéria Vencida encontrada: {codigo_materia}")  # Log
 
     return cursadas
 
