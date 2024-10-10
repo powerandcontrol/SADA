@@ -13,12 +13,12 @@ app = Flask(__name__, static_url_path=Config.STATIC_URL_PATH,
 app.config.from_object(Config)
 db.init_app(app)
 
-# Inicializa as tabelas e carrega os dados do Excel no banco de dados
+"""# Inicializa as tabelas e carrega os dados do Excel no banco de dados
 with app.app_context():
     db.create_all()  # Cria as tabelas apenas se não existirem
     # insertDisciplinas()  # Carrega os dados apenas se as tabelas estiverem vazias
     # insertRequisitos()  # Carrega os dados dos requisitos
-
+"""
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
