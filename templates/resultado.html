@@ -1,75 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="icon" type="image/x-icon" href="static/images/logo.ico">
+<!-- Extrai o template de base.html -->
+{% extends 'base.html' %}
 
-    <!-- Font Awesome para ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
-    <link rel= "stylesheet" type= "text/css" href= "static/css/base.css">
-    <link rel= "stylesheet" type= "text/css" href= "static/css/resultado.css">
-    <title>Relatório</title>
+<!-- Inserir o título da página -->
+{% block tittle %}
+SADA - Resultado
+{% endblock %}
 
-</head>
+<!-- Inserir o CSS da página -->
+{% block css %}
+<link rel="stylesheet" type="text/css" href="static/css/resultado.css">
+{% endblock %}
 
-<body>
-
-<header>
-    <img src="static/images/logo-unirio.png" alt="Logo da UNIRIO">
-</header>
-
-<div class="container">
+<!-- Inserir o Conteúdo da página -->
+{% block content %}
     <div class="tab-container">
         <div class="tab" onclick="showTab('faltantes')">Obrigatórias</div>
         <div class="tab" onclick="showTab('optativas')">Optativas</div>
         <div class="tab" onclick="showTab('situação')">Situação</div>
     </div>
-<section id="faltantes" class="tab-content active">
-    <h2>Disciplinas por Período:</h2>
 
-    {% for periodo in relatorio.faltantes.keys() %}
-        <h3>{{ periodo }}° período</h3>
-        <div>
-            <ul>
-                {% for materia in relatorio.faltantes[periodo] %}
-                    <li class="materia-card tooltip {% if materia.requisitos_ok %}requisito-ok{% else %}requisito-pendente{% endif %}"
-                        style="color: {% if materia.requisitos_ok %}#464D77{% else %}#DB5461{% endif %};
-                               border-left: {% if materia.requisitos_ok %}8px solid #464D77{% else %}8px solid #DB5461{% endif %};"
-                        onclick="openModal('{{ materia.codigo_disciplina }}', '{{ materia.nome_disciplina }}', '{{ materia.ementa }}', '{{ materia.carga_horaria }}', '{{ relatorio.requisitos[materia.nome_disciplina] | join(', ') }}', {% if not materia.requisitos_ok %}true{% else %}false{% endif %})">
-                        <div class="materia-info">
-                            <div class="materia-codigo">
-                                {{ materia.codigo_disciplina }}
-                                {% if not materia.requisitos_ok %}
-                                    <i class="fas fa-exclamation-circle" style="color: #EA526F; font-size: 20px;"></i>
-                                {% endif %}
-                            </div>
-                            <div class="materia-nome">{{ materia.nome_disciplina | upper }}</div>
-                        </div>
-                        <div class="materia-status"></div>
-                    </li>
-                {% endfor %}
+    <section id="faltantes" class="tab-content active">
+        <h2>Disciplinas por Período:</h2>
 
-                {% for turma in relatorio.turmas_cursadas %}
-                    {% if turma.periodo == periodo %}
-                        <li class="materia-card" style="color: #49A078;border-left: 8px solid #49A078;"
-                            onclick="openModal('{{ turma.codigo_disciplina }}', '{{ turma.nome_disciplina }}', '{{ turma.ementa }}', '{{ turma.carga_horaria }}', '{{ turma.requisitos | join(', ') if turma.requisitos else 'Nenhum' }}', false)">
+        {% for periodo in relatorio.faltantes.keys() %}
+            <h3>{{ periodo }}° período</h3>
+            <div>
+                <ul>
+                    {% for materia in relatorio.faltantes[periodo] %}
+                        <li class="materia-card tooltip {% if materia.requisitos_ok %}requisito-ok{% else %}requisito-pendente{% endif %}"
+                            style="color: {% if materia.requisitos_ok %}#464D77{% else %}#DB5461{% endif %};
+                                border-left: {% if materia.requisitos_ok %}8px solid #464D77{% else %}8px solid #DB5461{% endif %};"
+                            onclick="openModal('{{ materia.codigo_disciplina }}', '{{ materia.nome_disciplina }}', '{{ materia.ementa }}', '{{ materia.carga_horaria }}', '{{ relatorio.requisitos[materia.nome_disciplina] | join(', ') }}', {% if not materia.requisitos_ok %}true{% else %}false{% endif %})">
                             <div class="materia-info">
-                                <div class="materia-codigo">{{ turma.codigo_disciplina }}
-                                    <i class="fas fa-check-circle" style="color: #49A078; font-size: 20px;"></i>
+                                <div class="materia-codigo">
+                                    {{ materia.codigo_disciplina }}
+                                    {% if not materia.requisitos_ok %}
+                                        <i class="fas fa-exclamation-circle" style="color: #EA526F; font-size: 20px;"></i>
+                                    {% endif %}
                                 </div>
-                                <div class="materia-nome">{{ turma.nome_disciplina | upper }}</div>
+                                <div class="materia-nome">{{ materia.nome_disciplina | upper }}</div>
                             </div>
                             <div class="materia-status"></div>
                         </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-    {% endfor %}
-</section>
+                    {% endfor %}
+
+                    {% for turma in relatorio.turmas_cursadas %}
+                        {% if turma.periodo == periodo %}
+                            <li class="materia-card" style="color: #49A078;border-left: 8px solid #49A078;"
+                                onclick="openModal('{{ turma.codigo_disciplina }}', '{{ turma.nome_disciplina }}', '{{ turma.ementa }}', '{{ turma.carga_horaria }}', '{{ turma.requisitos | join(', ') if turma.requisitos else 'Nenhum' }}', false)">
+                                <div class="materia-info">
+                                    <div class="materia-codigo">{{ turma.codigo_disciplina }}
+                                        <i class="fas fa-check-circle" style="color: #49A078; font-size: 20px;"></i>
+                                    </div>
+                                    <div class="materia-nome">{{ turma.nome_disciplina | upper }}</div>
+                                </div>
+                                <div class="materia-status"></div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
 
    <!-- Modal -->
     <div id="modal" class="modal">
@@ -82,28 +74,26 @@
         </div>
     </div>
 
-
-<section id="optativas" class="tab-content">
-    {% if relatorio.optativas_cursadas > 0 %}
-        <h2>Optativas Cursadas:</h2>
-        <ul>
-            {% for optativa in relatorio.lista_optativas_cursadas %}
-                <li class="materia-card optativa-card"
-                    onclick="openModal('{{ optativa.codigo_disciplina }}', '{{ optativa.nome_disciplina }}', '{{ optativa.ementa }}', '{{ optativa.carga_horaria }}', 'Nenhum', false)">
-                    <div class="materia-info">
-                        <div class="materia-codigo">
-                            {{ optativa.codigo_disciplina }}
+    <section id="optativas" class="tab-content">
+        {% if relatorio.optativas_cursadas > 0 %}
+            <h2>Optativas Cursadas:</h2>
+            <ul>
+                {% for optativa in relatorio.lista_optativas_cursadas %}
+                    <li class="materia-card optativa-card"
+                        onclick="openModal('{{ optativa.codigo_disciplina }}', '{{ optativa.nome_disciplina }}', '{{ optativa.ementa }}', '{{ optativa.carga_horaria }}', 'Nenhum', false)">
+                        <div class="materia-info">
+                            <div class="materia-codigo">
+                                {{ optativa.codigo_disciplina }}
+                            </div>
+                            <div class="materia-nome">{{ optativa.nome_disciplina | upper }}</div>
                         </div>
-                        <div class="materia-nome">{{ optativa.nome_disciplina | upper }}</div>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-</section>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </section>
 
-
-     <section id="situação" class="tab-content">
+    <section id="situação" class="tab-content">
         <h2>Situação:</h2>
 
         <!-- Gráfico de Barras: Total de Matérias Cursadas vs Faltantes -->
@@ -118,115 +108,74 @@
         <h3>Percentual do Curso Cursado</h3>
         <canvas id="percentualDoughnutChart"></canvas>
     </section>
+{% endblock %}
 
-
-</div>
-
-<script>
-    function showTab(tabId) {
-        const tabs = document.querySelectorAll('.tab-content');
-        tabs.forEach(tab => {
-            tab.classList.remove('active');
+<!-- Inserir os Scripts da página -->
+{% block scripts %}
+    <script src="static/js/resultado.js"></script>
+    <script>
+        // Gráfico de Barras para Total de Matérias Cursadas vs Faltantes
+        const totalMateriasCtx = document.getElementById('totalMateriasChart').getContext('2d');
+        const totalMateriasChart = new Chart(totalMateriasCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Cursadas', 'Faltantes'],
+                datasets: [{
+                    label: 'Total de Matérias',
+                    data: [{{ relatorio.total_cursadas }}, {{ relatorio.total_faltantes }}],
+                    backgroundColor: ['rgba(255, 0, 0, 0.7)', 'rgba(0, 255, 0, 0.7)'],
+                    borderColor: ['rgba(255, 0, 0, 1)', 'rgba(0, 255, 0, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
         });
 
-        const activeTab = document.getElementById(tabId);
-        activeTab.classList.add('active');
-    }
-</script>
-
-<script>
-
-    function openModal(codigo, nome, ementa, carga_horaria, requisitos, requisitos_pendentes) {
-    document.getElementById('modal-title').innerText = `${codigo} - ${nome}`;
-    document.getElementById('modal-ementa').innerText = `Ementa: ${ementa}`;
-    document.getElementById('modal-carga-horaria').innerText = `Carga Horária: ${carga_horaria}h`;
-    document.getElementById('modal-requisitos').innerText = `Requisitos: ${requisitos || 'Nenhum'}`;
-
-    // Exibe o modal
-    document.getElementById('modal').style.display = 'block';
-}
-
-function closeModal() {
-    // Esconde o modal
-    document.getElementById('modal').style.display = 'none';
-}
-
-// Fecha o modal ao clicar fora dele
-window.onclick = function(event) {
-    if (event.target === document.getElementById('modal')) {
-        closeModal();
-    }
-}
-
-</script>
-
-<script>
-
-    // Gráfico de Barras para Total de Matérias Cursadas vs Faltantes
-    const totalMateriasCtx = document.getElementById('totalMateriasChart').getContext('2d');
-    const totalMateriasChart = new Chart(totalMateriasCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Cursadas', 'Faltantes'],
-            datasets: [{
-                label: 'Total de Matérias',
-                data: [{{ relatorio.total_cursadas }}, {{ relatorio.total_faltantes }}],
-                backgroundColor: ['rgba(255, 0, 0, 0.7)', 'rgba(0, 255, 0, 0.7)'],
-                borderColor: ['rgba(255, 0, 0, 1)', 'rgba(0, 255, 0, 1)'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: { beginAtZero: true }
+        // Gráfico de Pizza para Optativas Cursadas vs Faltantes
+        const optativasCtx = document.getElementById('optativasChart').getContext('2d');
+        const optativasChart = new Chart(optativasCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Optativas Cursadas', 'Optativas Faltantes'],
+                datasets: [{
+                    label: 'Optativas',
+                    data: [{{ relatorio.optativas_cursadas }}, {{ relatorio.total_optativas - relatorio.optativas_cursadas }}],
+                    backgroundColor: ['rgba(0, 0, 255, 0.7)', 'rgba(255, 255, 0, 0.7)'],
+                    borderColor: ['rgba(0, 0, 255, 1)', 'rgba(255, 255, 0, 1)'],
+                    borderWidth: 1
+                }]
             }
-        }
-    });
+        });
 
-    // Gráfico de Pizza para Optativas Cursadas vs Faltantes
-    const optativasCtx = document.getElementById('optativasChart').getContext('2d');
-    const optativasChart = new Chart(optativasCtx, {
-        type: 'pie',
-        data: {
-            labels: ['Optativas Cursadas', 'Optativas Faltantes'],
-            datasets: [{
-                label: 'Optativas',
-                data: [{{ relatorio.optativas_cursadas }}, {{ relatorio.total_optativas - relatorio.optativas_cursadas }}],
-                backgroundColor: ['rgba(0, 0, 255, 0.7)', 'rgba(255, 255, 0, 0.7)'],
-                borderColor: ['rgba(0, 0, 255, 1)', 'rgba(255, 255, 0, 1)'],
-                borderWidth: 1
-            }]
-        }
-    });
-
- // Gráfico de Doughnut para Percentual do Curso Cursado
-    const percentualDoughnutCtx = document.getElementById('percentualDoughnutChart').getContext('2d');
-    const percentualDoughnutChart = new Chart(percentualDoughnutCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Percentual Cursado', 'Percentual Faltante'],
-            datasets: [{
-                data: [{{ relatorio.percentual_cursado }}, 100 - {{ relatorio.percentual_cursado }}],
-                backgroundColor: ['rgba(0, 123, 255, 0.8)', 'rgba(255, 99, 132, 0.2)'],  // Cores mais vivas
-                borderColor: ['rgba(0, 123, 255, 1)', 'rgba(255, 99, 132, 1)'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            cutout: '70%',  // Define o espaço no meio para estilo anel
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+        // Gráfico de Doughnut para Percentual do Curso Cursado
+        const percentualDoughnutCtx = document.getElementById('percentualDoughnutChart').getContext('2d');
+        const percentualDoughnutChart = new Chart(percentualDoughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Percentual Cursado', 'Percentual Faltante'],
+                datasets: [{
+                    data: [{{ relatorio.percentual_cursado }}, 100 - {{ relatorio.percentual_cursado }}],
+                    backgroundColor: ['rgba(0, 123, 255, 0.8)', 'rgba(255, 99, 132, 0.2)'],  // Cores mais vivas
+                    borderColor: ['rgba(0, 123, 255, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                cutout: '70%',  // Define o espaço no meio para estilo anel
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                            }
                         }
                     }
                 }
             }
-        }
-    });
-</script>
-
-
-</body>
-</html>
+        });
+    </script>
+{% endblock %}
