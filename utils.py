@@ -13,6 +13,33 @@ def extrair_texto_pdf(file):
 
     return texto
 
+# Função para extrair o periodo atual do estudante a partir do historico
+def extrair_periodo_historico(pdf):
+    reader = PyPDF2.PdfReader(pdf)
+    pagina1 = reader.pages[0]
+    texto = pagina1.extract_text()
+
+    regex_periodo_atual = r"Período Atual: (\d{1,2})º Semestre"
+    periodo_atual = re.search(regex_periodo_atual, texto)
+
+    if periodo_atual:
+        return periodo_atual.group(1)
+    else:
+        return False
+
+# Função para extrair o curriculo do estudante a partir do historico
+def extrair_curriculo_historico(pdf):
+    reader = PyPDF2.PdfReader(pdf)
+    pagina1 = reader.pages[0]
+    texto = pagina1.extract_text()
+
+    regex_curriculo = r"Versão: (\d{4}/\d{1})"
+    curriculo = re.search(regex_curriculo, texto)
+
+    if curriculo:
+        return curriculo.group(1)
+    else:
+        return False
 
 # Função para buscar as matérias cursadas no texto extraído (para CR - Aprovados)
 def buscar_materias_cursadas(texto):
