@@ -19,6 +19,18 @@ SADA - Resultado
         <div class="tab" onclick="showTab('situação')">Situação</div>
     </div>
 
+
+ <!-- Legenda -->
+    <div class="legenda">
+        <h3>Legenda:</h3>
+        <ul class="legenda-list">
+            <li><span class="legenda-box" style="background-color: #DB5461;"></span>Vermelho - Matéria ainda não cursada e não possui todos os pré-requisitos</li>
+            <li><span class="legenda-box" style="background-color: #464D77;"></span>Azul - Matéria ainda não cursada, mas possui os pré-requisitos</li>
+            <li><span class="legenda-box" style="background-color: #49A078;"></span>Verde - Matéria cursada</li>
+        </ul>
+    </div>
+
+
     <section id="faltantes" class="tab-content active">
         <h2>Disciplinas por Período:</h2>
 
@@ -40,6 +52,10 @@ SADA - Resultado
                                 </div>
                                 <div class="materia-nome">{{ materia.nome_disciplina | upper }}</div>
                             </div>
+
+                                <!-- Texto "Ver Mais" -->
+                                <div class="ver-mais">Ver Mais</div>
+
                             <div class="materia-status"></div>
                         </li>
                     {% endfor %}
@@ -55,6 +71,9 @@ SADA - Resultado
                                     <div class="materia-nome">{{ turma.nome_disciplina | upper }}</div>
                                 </div>
                                 <div class="materia-status"></div>
+
+                                    <!-- Texto "Ver Mais" -->
+                                    <div class="ver-mais">Ver Mais</div>
                             </li>
                         {% endif %}
                     {% endfor %}

@@ -39,19 +39,53 @@ ul {
     vertical-align: top; /* Alinha os itens ao topo */
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animação para o hover */
+    transition: transform 0.3s ease, filter 0.3s ease;
     background-color: #fff; /* Fundo neutro e claro */
     width: 300px; /* Ajuste a largura conforme necessário */
     height: 60px;
+    overflow: hidden; /* Garante que o conteúdo não vaze */
+    cursor: pointer;
+    position: relative;
+
+
 }
 
 .materia-cursada {
     color: green; /* Manter o texto em verde */
 }
 
+.materia-card:hover .materia-info {
+    filter: blur(2px); /* Aplica o efeito de "turvamento" apenas ao conteúdo da matéria */
+}
+
 .materia-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Sombra mais intensa no hover */
+    transform: scale(1.05); /* Dá um leve zoom ao passar o mouse */
+}
+
+.materia-card:hover .ver-mais {
+    opacity: 1;
+    visibility: visible;
+}
+
+.materia-info {
+    transition: filter 0.3s ease;
+}
+
+.ver-mais {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10; /* Garante que o botão "Ver Mais" fique acima do conteúdo turvo */
 }
 
 .materia-info {
@@ -214,4 +248,29 @@ ul {
 .summary-item:hover {
     transform: translateY(-5px); /* Efeito de elevação no hover */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra no hover */
+}
+
+.legenda {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.legenda-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.legenda-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.legenda-box {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 3px;
+    display: inline-block;
 }
