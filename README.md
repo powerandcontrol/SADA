@@ -234,8 +234,13 @@ function App() {
 -->
 <!-- Contributing -->
 
+## 👋 Contribuidores
 
+<a href="https://github.com/powerandcontrol/SADA/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=powerandcontrol/SADA" />
+</a>
 
+<br>
 <!--
 Contributions are always welcome!
 
