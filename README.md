@@ -198,42 +198,6 @@ Tendo seguido todos os passos anteriores você pode rodar o projeto sem maiores 
   python app.py
 ```
 
-<!-- Deployment
-### 🚩 Deployment
-
-To deploy this project run
-
-```bash
-  yarn deploy
-```
- -->
-
-<br>
-
-<!--
-## 👀 Como usar o site?
-
-
-
-
-
-```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
-```
-
- Roadmap 
-## 🧭 Roadmap
-
-* [x] Todo 1
-* [ ] Todo 2
-
--->
-<!-- Contributing -->
-
 ## 👋 Contribuidores
 
 <a href="https://github.com/powerandcontrol/SADA/graphs/contributors">
@@ -241,46 +205,6 @@ function App() {
 </a>
 
 <br>
-<!--
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-
-### 📜 Code of Conduct
-
-Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
-
-## ❔ FAQ
-
-- Question 1
-
-  + Answer 1
-
-- Question 2
-
-  + Answer 2
-
--->
 
 ## ⚠️ Licensa
 Licensa MIT.
-
-
-<!--
-## 🤝 Contato
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
-
-
-## 💎 Acknowledgements
-
-Use this section to mention useful resources and libraries that you have used in your projects.
-
- - [Shields.io](https://shields.io/)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
- - [Readme Template](https://github.com/othneildrew/Best-README-Template)
--->
