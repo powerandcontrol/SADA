@@ -20,6 +20,16 @@ with app.app_context():
     # insertRequisitos()  # Carrega os dados dos requisitos
 """
 
+
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    disciplina = QuadroHorarios(
+        codigo_disciplina=f"TIN0206",
+    )
+    db.session.add(disciplina)
+    db.session.commit()
+    return render_template('index.html')
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
