@@ -198,6 +198,12 @@ Tendo seguido todos os passos anteriores você pode rodar o projeto sem maiores 
   python app.py
 ```
 
+<!-- Running Tests -->
+### 🚩 Testes de Carga
+
+O relatório dos Testes de Carga pode ser encontrado clicando <a href="docs/relatorio_testes.pdf"> aqui </a>.
+
+
 ## 👋 Contribuidores
 
 <a href="https://github.com/powerandcontrol/SADA/graphs/contributors">
