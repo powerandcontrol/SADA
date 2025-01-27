@@ -4,7 +4,7 @@ from config import Config
 from utils import *
 
 #
-from models import db, Eixo, Disciplina, Requisito
+from models import db, Eixo, Disciplina, Requisito, QuadroHorarios
 from database import insertDisciplinas, insertRequisitos
 
 
@@ -46,6 +46,27 @@ def index():
             # Redireciona para a página de resultados
             return render_template('resultado.html', relatorio=relatorio)
 
+    return render_template('index.html')
+
+@app.route('/test_index', methods=['GET', 'POST'])
+def test_index():
+    if request.method:
+
+        file = 'Historico_Teste_CRAprovados.pdf'
+        if file:
+            texto_pdf = extrair_texto_pdf(file)
+            cursadas_historico = buscar_materias_cursadas(texto_pdf, 'cr_aprovados')
+            relatorio = gerar_relatorio(cursadas_historico)
+            return render_template('resultado.html', relatorio=relatorio)
+
+    return render_template('index.html')
+
+@app.route('/test_add', methods=['GET', 'POST'])
+
+def test_add():
+    qd = QuadroHorarios(codigo_disciplina = "TIN0206")
+    db.session.add(qd)
+    db.session.commit()
     return render_template('index.html')
 
 
